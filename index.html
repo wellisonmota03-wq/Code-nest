@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#6d45e8"><title>CodeNest — Coding Studio</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--bg:#f7f7fb;--card:#fff;--ink:#202033;--muted:#74758a;--purple:#6d45e8;--purple2:#eee8ff;--line:#e9e7f1;--green:#16865b;--gold:#f3b51b}
+[data-theme=dark]{--bg:#14141b;--card:#20202b;--ink:#f4f3fb;--muted:#aaa9bb;--purple:#a58bff;--purple2:#34284f;--line:#353541;--green:#5fd6a4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px system-ui,-apple-system,Segoe UI,sans-serif}button,input{font:inherit}button{cursor:pointer}
+header{position:sticky;top:0;z-index:5;background:var(--card);padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:900;letter-spacing:-.8px}.logo span{color:var(--purple)}.coins{background:var(--purple2);color:var(--purple);padding:7px 11px;border-radius:20px;font-weight:800}
+main{padding:18px 16px 92px;max-width:700px;margin:auto}.welcome{background:linear-gradient(135deg,#38206d,#8155ef);color:white;border-radius:24px;padding:23px;position:relative;overflow:hidden}.welcome h1{font-size:27px;line-height:1.15;margin:7px 0}.welcome p{color:#e4dcff;margin:8px 0 17px}.primary{background:#fff;color:#4f2fb1;border:0;border-radius:13px;padding:12px 17px;font-weight:800}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;font-weight:800;opacity:.8}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:24px 0 12px}.sectionhead h2{font-size:19px;margin:0}.muted{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.course{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;text-align:left;color:var(--ink);min-height:145px}.course .emoji{font-size:28px}.course h3{margin:10px 0 3px;font-size:16px}.course p{margin:0;color:var(--muted);font-size:12px}.bar{height:6px;background:var(--line);border-radius:9px;margin-top:13px;overflow:hidden}.bar i{display:block;height:100%;background:var(--purple);width:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.dailyrow{display:flex;align-items:center;gap:12px}.dailyicon{width:44px;height:44px;border-radius:14px;background:var(--purple2);display:grid;place-items:center;font-size:22px}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:10;display:flex;justify-content:space-around;background:var(--card);border-top:1px solid var(--line);padding:8px 4px calc(8px + env(safe-area-inset-bottom))}nav button{border:0;background:none;color:var(--muted);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:60px;padding:4px}nav button b{font-size:21px;font-weight:500}nav button.active{color:var(--purple);font-weight:800}
+.viewtitle{font-size:27px;margin:8px 0 5px}.lesson{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}.lesson:last-child{border:0}.lessonnum{width:39px;height:39px;border-radius:13px;background:var(--purple2);color:var(--purple);display:grid;place-items:center;font-weight:900;flex-shrink:0}.lesson button{margin-left:auto;border:0;border-radius:12px;background:var(--purple);color:white;padding:9px 12px;font-weight:700}
+.answer{display:block;width:100%;text-align:left;padding:14px;border:1px solid var(--line);border-radius:13px;background:var(--card);color:var(--ink);margin:10px 0}.answer.correct{border-color:var(--green);background:color-mix(in srgb,var(--green) 12%,var(--card))}.answer.wrong{border-color:#e05265;background:#e0526518}
+input[type=text]{width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);margin:7px 0 12px}.wide{width:100%;border:0;background:var(--purple);color:white;border-radius:13px;padding:13px;font-weight:800;margin-top:8px}.secondary{background:var(--purple2);color:var(--purple)}.profilehero{text-align:center;padding:22px}.avatar{width:76px;height:76px;border-radius:24px;background:var(--purple2);display:grid;place-items:center;font-size:38px;margin:0 auto 12px}.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:var(--bg);border-radius:13px;padding:12px 5px;text-align:center}.stat strong{display:block;font-size:20px}.hidden{display:none!important}.tag{font-size:11px;background:var(--purple2);color:var(--purple);padding:4px 8px;border-radius:20px;font-weight:800}
+
+.editor-hero{background:linear-gradient(135deg,#0a1020,#15102e);color:#eef3ff;border:1px solid #293858;border-radius:20px;overflow:hidden}
+.editor-top{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid #29344b;gap:8px}
+.editor-brand{font-size:20px;font-weight:900}.editor-brand span{color:#a58bff}
+.editor-pill{font-size:11px;background:#633ce7;color:#fff;padding:5px 8px;border-radius:8px;font-weight:800}
+.editor-meta{display:flex;justify-content:space-between;padding:11px 15px;color:#bac6df;font-size:12px;background:#0d1423}
+.editor-workspace{display:grid;grid-template-columns:115px 1fr;min-height:215px}
+.filetree{padding:12px 8px;background:#0c1421;border-right:1px solid #27334a;font-size:11px;color:#aab8d0;overflow:hidden}
+.filetree strong{display:block;color:#e5eaff;font-size:10px;margin-bottom:12px;letter-spacing:.7px}
+.filetree div{padding:7px 4px;border-radius:5px;white-space:nowrap}
+.filetree .selected{background:#25214c;color:#b9a7ff}
+.codepane{padding:12px 9px;background:#080d17;min-width:0}
+.tabcode{font-size:11px;color:#d8dfff;border-bottom:1px solid #28334a;padding-bottom:10px;margin-bottom:10px}
+.code{font:10px/1.85 ui-monospace,SFMono-Regular,Consolas,monospace;color:#b8c6e8;white-space:pre-wrap;overflow-wrap:anywhere}
+.kw{color:#c69cff}.fn{color:#63d8ff}.str{color:#9fe7b2}.num{color:#ffcf86}
+.terminal{background:#05090f;color:#9ce8b6;padding:13px;border-radius:14px;font:11px/1.7 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #28344b}
+.ai-card{background:linear-gradient(140deg,#16142b,#101a2c);color:#e9eaff;border:1px solid #40316f;border-radius:16px;padding:15px}
+.ai-title{display:flex;align-items:center;gap:8px;font-weight:800}.ai-dot{margin-left:auto;color:#6de4ad;font-size:11px}
+.ai-input{display:flex;gap:8px;margin-top:12px}.ai-input input{margin:0;background:#0a1120;border-color:#303c58;color:#fff;font-size:13px}.ai-input button{border:0;border-radius:10px;background:#6348e8;color:#fff;padding:0 14px}
+.quick-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.quick-actions button{background:#10192b;border:1px solid #293a59;color:#cbd8f5;border-radius:10px;padding:10px 5px;font-size:11px}
+.studio-nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:#0b1020;border-radius:14px;padding:9px 3px;margin-top:12px}.studio-nav button{background:transparent;border:0;color:#aeb9d2;font-size:10px;padding:7px 1px}.studio-nav button span{display:block;font-size:18px;margin-bottom:4px}.studio-nav button.active{color:#b7a1ff}
+
+</style></head>
+<body>
+<header><div class="logo">Code<span>Nest</span> ✦</div><div class="coins" id="coinpill">🪙 0 XP</div></header>
+<main id="app"></main>
+<nav id="nav">
+<button class="active" data-tab="home"><b>⌂</b>Início</button>
+<button data-tab="learn"><b>▤</b>Aprender</button>
+<button data-tab="practice"><b>⌘</b>Praticar</button>
+<button data-tab="profile"><b>♙</b>Perfil</button>
+</nav>
+<script>
+const courses=[
+{id:'python',name:'Python',emoji:'🐍',color:'#3977d5',desc:'Lógica e automação',lessons:[
+['Olá, mundo!','Em Python, print() mostra uma mensagem na tela.',['print("Olá, mundo!")','show("Olá, mundo!")','echo("Olá, mundo!")'],0,'print("Olá, mundo!")'],
+['Variáveis','Variáveis guardam valores. Exemplo: nome = "Ana".',['Uma caixa para guardar um valor','Um tipo de tela','Uma operação de internet'],0,'nome = "Ana"'],
+['Números','Você pode somar números usando o sinal +.',['2 + 3','2 & 3','2 =+ 3'],0,'resultado = 2 + 3'],
+['Condições','if executa um bloco quando a condição é verdadeira.',['if idade >= 18:','when idade >= 18','repeat idade >= 18'],0,'if idade >= 18:'] ]},
+{id:'javascript',name:'JavaScript',emoji:'🟨',desc:'Sites interativos',lessons:[['Primeiro comando','console.log() escreve uma mensagem no console.',['console.log("Oi!")','print("Oi!")','say("Oi!")'],0,'console.log("Oi!")'],['Variáveis','const declara uma variável que não será reatribuída.',['const nome = "Ana";','new nome "Ana";','text nome = "Ana";'],0,'const nome = "Ana";'],['Funções','Funções agrupam instruções reutilizáveis.',['function somar(a,b){ return a+b; }','func somar a,b','make somar(a,b)'],0,'function somar(a,b){ return a+b; }']]},
+{id:'html',name:'HTML',emoji:'🌐',desc:'Estrutura de páginas',lessons:[['Seu primeiro título','A tag h1 cria um título principal.',['<h1>Olá!</h1>','<title1>Olá!</title1>','<heading>Olá!</heading>'],0,'<h1>Olá!</h1>'],['Parágrafos','A tag p representa um parágrafo.',['<p>Meu texto</p>','<paragraph>Meu texto</paragraph>','<txt>Meu texto</txt>'],0,'<p>Meu texto</p>']]},
+{id:'css',name:'CSS',emoji:'🎨',desc:'Estilo e cores',lessons:[['Mudar a cor','color define a cor do texto.',['color: purple;','font: purple;','text-color = purple;'],0,'p { color: purple; }'],['Espaçamento','padding cria espaço interno de um elemento.',['padding: 12px;','inside-space: 12px;','margin-inside: 12px;'],0,'button { padding: 12px; }']]},
+{id:'sql',name:'SQL',emoji:'🗄️',desc:'Consultar dados',lessons:[['Buscar dados','SELECT escolhe quais dados consultar.',['SELECT * FROM alunos;','GET ALL alunos;','OPEN alunos;'],0,'SELECT * FROM alunos;'],['Filtrar','WHERE filtra linhas conforme uma condição.',['SELECT * FROM alunos WHERE idade > 12;','SELECT idade OVER 12;','FILTER alunos idade > 12;'],0,'SELECT * FROM alunos WHERE idade > 12;']]},
+{id:'typescript',name:'TypeScript',emoji:'🔷',desc:'JavaScript com tipos',lessons:[['Tipos','Uma variável pode ter tipo string.',['let nome: string = "Ana";','string nome := "Ana";','let string nome = "Ana";'],0,'let nome: string = "Ana";'],['Números','O tipo number representa números.',['let pontos: number = 10;','let pontos: digit = 10;','number pontos := 10;'],0,'let pontos: number = 10;']]}
+];
+let state=JSON.parse(localStorage.getItem('cp-state')||'{"xp":0,"done":[],"streak":1,"name":"Programador","theme":"light"}');
+let tab='home',activeCourse=null,activeLesson=0,quizIndex=0,quizScore=0;
+function save(){localStorage.setItem('cp-state',JSON.stringify(state));document.getElementById('coinpill').textContent='🪙 '+state.xp+' XP';document.documentElement.dataset.theme=state.theme;}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function courseProgress(c){return c.lessons.filter((_,i)=>state.done.includes(c.id+':'+i)).length}
+function render(){
+save();const app=document.getElementById('app');
+function aiPrompt(prompt){const field=document.getElementById('aiquestion');if(field)field.value=prompt;askAI();}
+function askAI(){const field=document.getElementById('aiquestion');const out=document.getElementById('airesponse');if(!field||!out)return;const q=field.value.trim();if(!q){out.textContent='Digite uma pergunta primeiro.';return;}out.textContent='Dica do CodeNest: '+(q.toLowerCase().includes('exerc')?'Crie uma variável chamada pontos e some 10 a ela. Depois explique o resultado.':q.toLowerCase().includes('exemplo')?'Exemplo Python: nome = "Dev"\\nprint("Olá,", nome) — a função print mostra o texto na tela.':'Leia o código linha por linha, identifique as variáveis e acompanhe o que cada função recebe e devolve. Este assistente é uma demonstração local, não uma IA conectada.');}
+document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+if(tab==='home'){app.innerHTML=`<section class="editor-hero">
+<div class="editor-top"><div>☰ <span class="editor-brand">Code<span>Nest</span></span> <span class="editor-pill">STUDIO</span></div><span>〈/〉</span></div>
+<div class="editor-meta"><span>▣ Projeto: Meu primeiro app</span><span>⑂ main　›</span></div>
+<div class="editor-workspace"><aside class="filetree"><strong>EXPLORER</strong><div>▾ 📁 app</div><div class="selected">　📄 main.py</div><div>　📄 lessons.py</div><div>▸ 📁 courses</div><div>▸ 📁 assets</div><div>📄 README.md</div></aside>
+<div class="codepane"><div class="tabcode">🐍 main.py　×</div><div class="code"><span class="kw">def</span> <span class="fn">boas_vindas</span>(nome):<br>　<span class="kw">print</span>(<span class="str">f"Olá, {nome}!"</span>)<br><br><span class="kw">curso</span> = <span class="str">"Python"</span><br><span class="kw">nivel</span> = <span class="num">1</span><br><br><span class="fn">boas_vindas</span>(<span class="str">"Dev"</span>)</div></div></div>
+<div style="padding:12px 14px;background:#0a0e18;border-top:1px solid #29344b"><div style="font-size:11px;color:#bac7e1;margin-bottom:7px">▣ TERMINAL　<span style="color:#69e4a7">● pronto</span></div><div class="terminal">$ python main.py<br>Olá, Dev!<br>Processo concluído com sucesso.<br><span style="color:#7f8eaa">$ _</span></div></div></section>
+<div class="sectionhead"><h2>CodeNest AI</h2><span class="tag">✦ Assistente</span></div>
+<section class="ai-card"><div class="ai-title">✦ Assistente de código <span class="ai-dot">● Online demo</span></div><p style="font-size:13px;color:#c5cce2;line-height:1.5">Posso te ajudar a entender códigos, praticar lógica e estudar programação. Escolha uma ação para começar.</p><div class="quick-actions"><button onclick="aiPrompt('Explique um código')">⌘<br>Explicar código</button><button onclick="aiPrompt('Criar um exemplo')">＋<br>Criar exemplo</button><button onclick="aiPrompt('Sugerir exercício')">◇<br>Exercício</button></div><div class="ai-input"><input id="aiquestion" type="text" placeholder="Pergunte sobre programação..."><button onclick="askAI()">➤</button></div><div id="airesponse" style="font-size:12px;color:#d5d9f1;line-height:1.5;margin-top:10px"></div></section>
+<div class="sectionhead"><h2>Seus cursos</h2><span class="muted">Ver todos</span></div>
+<div class="grid">${courses.map(c=>`<button class="course" onclick="openCourse('${c.id}')"><div class="emoji">${c.emoji}</div><h3>${c.name}</h3><p>${c.desc}</p><div class="bar"><i style="width:${courseProgress(c)/c.lessons.length*100}%"></i></div><p style="margin-top:7px">${courseProgress(c)}/${c.lessons.length} lições</p></button>`).join('')}</div>
+<div class="studio-nav"><button class="active" onclick="go('home')"><span>〈/〉</span>Editor</button><button onclick="go('learn')"><span>⑂</span>Cursos</button><button onclick="go('practice')"><span>▷</span>Praticar</button><button onclick="aiPrompt('Explique um código')"><span>✦</span>Assistente</button><button onclick="go('profile')"><span>⚙</span>Perfil</button></div>`;
+
+}else if(tab==='learn'){app.innerHTML=`<h1 class="viewtitle">Aprender</h1><p class="muted">Escolha uma linguagem e avance no seu ritmo.</p><div class="grid">${courses.map(c=>`<button class="course" onclick="openCourse('${c.id}')"><div class="emoji">${c.emoji}</div><h3>${c.name}</h3><p>${c.desc}</p><div class="bar"><i style="width:${courseProgress(c)/c.lessons.length*100}%"></i></div><p style="margin-top:7px">${courseProgress(c)}/${c.lessons.length} concluídas</p></button>`).join('')}</div>`;
+}else if(tab==='practice'){renderQuiz(app);
+}else{app.innerHTML=`<div class="panel profilehero"><div class="avatar">👨‍💻</div><h2>${esc(state.name)}</h2><p class="muted">Programador em treinamento</p><div class="statrow"><div class="stat"><strong>${state.xp}</strong><span class="muted">XP</span></div><div class="stat"><strong>${state.done.length}</strong><span class="muted">Lições</span></div><div class="stat"><strong>🔥 ${state.streak}</strong><span class="muted">Sequência</span></div></div></div><div class="sectionhead"><h2>Seu perfil</h2></div><div class="panel"><label for="name">Como quer ser chamado?</label><input id="name" type="text" maxlength="28" value="${esc(state.name)}"><button class="wide" onclick="saveName()">Salvar nome</button><button class="wide secondary" onclick="toggleTheme()">Alternar tema claro/escuro</button></div><div class="sectionhead"><h2>Conquistas</h2></div><div class="panel">🏅 ${state.done.length>=1?'Primeira lição concluída':'Complete sua primeira lição'}<hr style="border:0;border-top:1px solid var(--line);margin:14px 0">⚡ ${state.xp>=50?'50 XP alcançados':'Ganhe 50 XP para desbloquear esta conquista'}</div>`;}
+}
+function go(t){tab=t;render();window.scrollTo(0,0)}
+function openCourse(id){activeCourse=courses.find(c=>c.id===id);tab='course';renderCourse()}
+function renderCourse(){const app=document.getElementById('app'),c=activeCourse;document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));app.innerHTML=`<button class="answer" onclick="go('learn')">← Voltar aos cursos</button><h1 class="viewtitle">${c.emoji} ${c.name}</h1><p class="muted">${c.desc} · ${c.lessons.length} lições</p><div class="panel"><div class="bar"><i style="width:${courseProgress(c)/c.lessons.length*100}%"></i></div><p class="muted">${courseProgress(c)} de ${c.lessons.length} concluídas</p></div><div class="sectionhead"><h2>Trilha de aprendizagem</h2></div>${c.lessons.map((l,i)=>`<div class="lesson"><div class="lessonnum">${state.done.includes(c.id+':'+i)?'✓':i+1}</div><div><strong>${l[0]}</strong><div class="muted">${i===0?'Comece por aqui':'Próxima etapa'}</div></div><button onclick="startLesson(${i})">${state.done.includes(c.id+':'+i)?'Rever':'Iniciar'}</button></div>`).join('')}`}
+function startLesson(i){activeLesson=i;const c=activeCourse,l=c.lessons[i];const app=document.getElementById('app');app.innerHTML=`<button class="answer" onclick="renderCourse()">← Voltar à trilha</button><div class="sectionhead"><span class="tag">${c.name} · Lição ${i+1}</span><span class="muted">+10 XP</span></div><h1 class="viewtitle">${l[0]}</h1><div class="panel"><p>${l[1]}</p><div style="background:#191925;color:#c8f7d4;padding:16px;border-radius:12px;font-family:monospace;overflow-wrap:anywhere">${esc(l[4])}</div></div><div class="sectionhead"><h2>Hora de praticar</h2></div><p>Qual opção está correta?</p><div id="answers">${l[2].map((a,j)=>`<button class="answer" onclick="checkLesson(${j})">${esc(a)}</button>`).join('')}</div><div id="feedback"></div>`}
+function checkLesson(j){const l=activeCourse.lessons[activeLesson],buttons=[...document.querySelectorAll('#answers button')];buttons.forEach((b,i)=>{b.disabled=true;if(i===l[3])b.classList.add('correct');else if(i===j)b.classList.add('wrong')});let good=j===l[3];document.getElementById('feedback').innerHTML=`<div class="panel"><strong>${good?'🎉 Muito bem!':'💡 Quase! Vamos aprender.'}</strong><p class="muted">${good?'Resposta correta. Continue assim!':'Leia a explicação e tente outra lição.'}</p><button class="wide" onclick="finishLesson(${good})">${good?'Concluir lição':'Continuar'}</button></div>`}
+function finishLesson(good){const key=activeCourse.id+':'+activeLesson;if(good&&!state.done.includes(key)){state.done.push(key);state.xp+=10;}save();if(activeLesson+1<activeCourse.lessons.length){startLesson(activeLesson+1)}else{renderCourse();document.getElementById('app').insertAdjacentHTML('afterbegin','<div class="panel"><strong>🎉 Trilha concluída!</strong><p class="muted">Você pode revisar as lições ou escolher outro curso.</p></div>')}}
+function renderQuiz(app){const all=courses.flatMap(c=>c.lessons.map((l,i)=>({c,l,i})));const q=all[quizIndex%all.length];app.innerHTML=`<h1 class="viewtitle">Praticar</h1><p class="muted">Desafio rápido · ganhe 5 XP por resposta correta</p><div class="panel"><span class="tag">${q.c.name}</span><h2>${q.l[0]}</h2><p>${q.l[1]}</p>${q.l[2].map((a,j)=>`<button class="answer" onclick="answerQuiz(${j},${q.l[3]})">${esc(a)}</button>`).join('')}<div id="qfeedback"></div></div><button class="wide secondary" onclick="nextQuiz()">Pular pergunta</button>`}
+function answerQuiz(j,correct){const bs=[...document.querySelectorAll('.panel .answer')];bs.forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');else if(i===j)b.classList.add('wrong')});const ok=j===correct;if(ok)state.xp+=5;save();document.getElementById('qfeedback').innerHTML=`<p><strong>${ok?'✅ Correto! +5 XP':'📚 Revise o conceito e tente outra.'}</strong></p><button class="wide" onclick="nextQuiz()">Próxima pergunta</button>`}
+function nextQuiz(){quizIndex++;render()}
+function saveName(){const v=document.getElementById('name').value.trim();if(v)state.name=v;save();render()}
+function toggleTheme(){state.theme=state.theme==='dark'?'light':'dark';save();render()}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.tab)));
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+render();
+</script></body></html>
